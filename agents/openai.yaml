@@ -1,4 +1,4 @@
 interface:
-  display_name: "KindForm · 友好极简的任务流程"
-  short_description: "面向轻量表单、小工具与注册流程，以清楚操作和克制趣味建立亲和感"
-  default_prompt: "使用 $kind-form，为我的项目设计友好极简的前端，保留现有功能并完善真实交互状态。"
+  display_name: "KindForm · Tally 式友好极简"
+  short_description: "白底黑字、蓝色操作与少量原创手绘，适合产品首页和轻量表单"
+  default_prompt: "使用 $kind-form，按 Tally 的构图、无衬线排版与蓝色操作设计我的前端，保留自身品牌与已有功能。"

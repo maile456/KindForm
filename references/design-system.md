@@ -1,66 +1,32 @@
-# 友好极简设计规范
+# Tally-Inspired Design System
 
-## 识别度与边界
+## Measured Reference
 
-友好感来自清楚的提问、可预期的操作和少量活泼细节，不来自整屏涂鸦或装饰性大卡片。与清爽文档风格相比，这里更关注输入和完成任务；与温暖阅读风格相比，不使用长文版式作为默认；与高密度工作台相比，默认只保留眼前需要处理的信息。
+Reference: [Tally](https://tally.so/). HTML/CSS and frames from the actual product demo were inspected on 2026-10-29. This is a measured visual direction, not a pixel-parity claim. Use original brands, text, images, and characters.
 
-可以选择一个品牌签名并持续使用：杏黄色的小标记、简洁字符标志、或有实际意义的小插画。不要每个分区发明一种装饰。品牌细节不参与成功、警告和失败的判断。
+- White canvas, text `#37352F`, gray `#787774`, blue `#0070D7` and hover `#005BB5`. Tiny bright magenta `#F81CE5` details. **No default green, mustard, or yellow theme.**
+- Inter is the primary sans-serif reference. Bundle a licensed font or use the project font with the same visual category. No serif display type and no negative tracking.
+- Main container about 1024px including 24px horizontal gutters; interior product scene around 976px. Header about 60px with 20px horizontal padding.
+- Hero headline around 64px/1 on large desktop. Real reference breakpoints reduce to 50px at <=1200, 32px at <=992, and 26px at <=576. Adapt exact size to original title length without changing the bold centered composition.
+- Supporting copy about 22px/1.25, weight 500, max-width 600px. Hero top spacing roughly 128px, major section gaps up to 192px.
+- Main blue CTA about 36px high and radius 8px. Auxiliary text links are plain, not pills.
+- A large white browser window dominates the hero. Its content is a real simple form: large black heading, small description, vertically stacked labeled fields, choices, and a black submit button. Fine gray borders, no decorative dashboard chrome.
+- Hand-drawn gray-black people appear at the scene's far sides, with tiny magenta accents. Hide them on narrow screens. Do not duplicate them as decoration in every section.
 
-## 配色与字体
+## Homepage Mode
 
-可选的 [tokens.css](../assets/tokens.css) 给出浅色与暗色的语义变量。绿色是默认主操作，珊瑚红是错误，杏黄只作少量标记；业务已有品牌色时保留其色相并重新验证对比度。
+Start from `docs/index.html`. Use a centered headline rather than split text/media. The form is the product visual, not a tiny thumbnail inside a decorative hero card. Preserve hierarchy and whitespace before adding sections. Use dense product tools only inside the coherent product preview.
 
-- 正文、标签与错误提示以 16px / 1.5 为起点；辅助元信息可用 14px / 1.5。阅读字号不随视口宽度缩放。
-- 页面标题常用 28px / 1.25，紧凑工具标题 22px / 1.3。长标题换行，不用超大标题压缩表单。
-- 字体使用系统无衬线与中文回退。字距为 0，不用全大写、极细字重或低对比灰字建立精致感。
-- 普通文字对比度至少 4.5:1，大字至少 3:1；必要边界、焦点和图标至少 3:1。实际使用字体和背景组合都要测量，不能只凭变量名称判断。
-- 暗色不是浅色反相：使用近黑中性背景、略亮工具表面、淡灰文字，主操作保留清楚的文字对比，不用发光边框。
+The supplied original transparent doodle is `docs/images/doodle.png`. Its center is transparent; keep it behind the browser scene with the two characters visible beside the sides on wide screens. Do not stretch its aspect ratio. It was generated for this project and is not a Tally asset.
 
-## 布局尺度
+Interactions must correspond to controls: edit title, switch preview state, fill name and choose an option, validate required fields, show a truthful local completion, reset, and select templates. If a publish control exists without backend publishing, its feedback must say local draft rather than live publication.
 
-| 场景 | 起始结构 | 建议尺度 |
-| --- | --- | --- |
-| 单页表单 | 页头、表单、提交状态 | 正文宽 560-640px，页面边距 24px，窄屏 16px |
-| 多步注册 | 简短页头、步骤状态、当前字段、前进与后退 | 主列宽 560-640px，步骤说明不挤进按钮 |
-| 轻量工具 | 标题与必要状态、输入区、结果区 | 容器宽 960-1120px；桌面可双列，窄屏按输入再结果排列 |
-| 轻量后台 | 紧凑导航、标题行、筛选、列表 | 密度由实际任务决定，不拉宽行距伪装简洁 |
+## Form And Tool Mode
 
-节奏采用 4/8/12/16/24/32px。字段之间通常 20-24px，标签与输入 8px，描述与错误 6-8px。输入和按钮最小高度 44px；多行文本设置稳定最小高度，不让加载或校验撑开按钮。
+Start from `docs/workspace/index.html` only for a real task-oriented flow. Use a white document-like surface, black question text, blue primary commands, simple outlined inputs, and generous question spacing. Do not copy the hero headline scale into field groups or dialogs. Multi-step forms may use a modest stepper; do not wrap every question in a separate floating card.
 
-不将页面分区全部做成卡片，不在卡片里再套卡片。只为真正独立的重复条目、弹窗或有边界的工具使用框。表单分组优先用小标题、间距和必要分隔线。
+Inputs have associated labels and descriptions, not only placeholder text. Errors appear near the invalid field and in a summary when useful. Preserve values when moving back. Keep loading dimensions stable; distinguish local completion from real network submission. Use standard checkboxes, radio buttons, selects, numeric fields, and familiar icons rather than hand-drawn controls.
 
-## 表单与流程
+## Validation
 
-每个字段至少包含 label 和控件；描述只在解释格式、范围或后果确有需要时出现。必填状态要一致，不用颜色单独表达；占位符不得替代 label。通过 `for` / `id`、`aria-describedby` 和 `aria-invalid` 或框架等效 API 建立关系。
-
-| 状态 | 表现与行为 |
-| --- | --- |
-| 默认 | 边界清楚，标签可见；默认值来自真实数据或明确演示数据 |
-| 悬停 | 边界或底色小幅变化，不改变尺寸 |
-| 焦点 | 2px 可见外轮廓与间隔；不能仅靠轻微变色 |
-| 错误 | 字段旁给出可修正的具体信息，带文字或图标；服务端错误也映射到字段或表单摘要 |
-| 禁用 | 只对确实暂不可用的控件使用；不要通过禁用提交隐藏尚未满足的条件 |
-| 请求中 | 阻止重复提交，稳定按钮宽度，以可访问状态文本报告进度 |
-| 成功 | 明确实际完成的动作；下一步是业务命令，不是夸奖或设计说明 |
-| 请求失败 | 保留输入，说明发生的事情并给出有效重试动作；避免只弹短暂 toast |
-
-默认在离开已编辑字段后提示格式错误，提交时检查完整表单；不要在输入第一个字符时频繁报错。提交失败后焦点移到错误摘要或第一个错误字段，避免每次校验都抢焦点。
-
-多步流程显示当前步骤和总步骤或可理解的阶段名称；后退保存已填内容，前进只校验当前必需条件。浏览器刷新后的保留策略取决于数据敏感度，不能默认将私密内容写入本地存储。上传、支付或外部请求遵循项目现有确认和权限流程。
-
-## 控件语法
-
-- 二元设置用 checkbox 或 switch；互斥的少量模式用分段控件；较多选项用 select 或菜单；数字用输入、步进器或适用的滑块。
-- 视图切换用 tabs，不用一排看似提交按钮的文本块。保存、下载、复制、删除等工具优先熟悉图标，有可访问名称与悬停提示。
-- 主要业务命令可用明确动词的文字或图标加文字。每个步骤的主操作保持稳定位置；返回使用次级样式，危险操作与提交分开。
-- 提示语简短而具体，例如“请输入有效邮箱”或“上传失败，请重试”。不编造账户、联系方式、评价或已完成的后端操作。
-
-## 动效与素材
-
-交互过渡采用 120-180ms 的底色或透明度变化；避免字段弹跳、持续漂浮或滚动时阻碍输入。尊重 `prefers-reduced-motion`。
-
-需要图片时，优先用户提供或与内容直接相关的可用素材。空状态可以有小型对象插画，但不让它替代明确的空状态文案和下一步操作。使用原创或许可清楚的素材，不复制 Tally 的标志、插画或文案。
-
-## 检查重点
-
-验证 360px 窄屏和常见桌面宽度下字段、按钮、长中文和错误提示不重叠；工具双列能自然转单列。检查键盘完成流程、返回、重试、取消和重复点击；无 hover 的设备仍可发现操作。最终核对主操作、错误、焦点和禁用状态在两套主题中各自清楚可辨。
+Check 1440, 768, 390, and 360px widths. Text must fit, long title input must wrap, the browser scene must stay in the viewport, and hidden doodles must not create overflow. Mobile navigation needs explicit expanded state and keyboard support. Review on-page imagery and font loading. Keep keyboard focus visible, expose field errors, and honor reduced motion.
