@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN" data-style="kind-form">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>KindForm · 周末工作坊</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/lucide.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="KindForm 首页"><span class="brand-mark"><i data-lucide="asterisk" aria-hidden="true"></i></span>KindForm<span class="brand-dot">.</span></a>
+    <span class="edition">周末计划 <span>第 04 期</span></span>
+  </header>
+
+  <main class="page-shell">
+    <div class="page-heading"><p class="eyebrow"><span></span> 留一点时间，给喜欢的事</p><h1>周末，一起做点东西。</h1></div>
+    <div class="workspace">
+      <section class="registration" aria-label="工作坊报名">
+        <nav class="step-nav" aria-label="报名进度">
+          <ol>
+            <li><button type="button" class="step-button" data-step-link="1" aria-current="step"><span class="step-number">1</span><span>选择活动</span></button></li>
+            <li><button type="button" class="step-button" data-step-link="2" disabled><span class="step-number">2</span><span>个人信息</span></button></li>
+            <li><button type="button" class="step-button" data-step-link="3" disabled><span class="step-number">3</span><span>确认报名</span></button></li>
+          </ol>
+        </nav>
+
+        <form id="registration-form" novalidate>
+          <div id="error-summary" class="message message-error" role="alert" tabindex="-1" hidden></div>
+          <section class="step-panel" data-step="1" aria-labelledby="step-one-title">
+            <figure class="workshop-photo"><img src="images/workshop.jpg" alt="纸面上的钢笔笔尖与手写字迹" width="1120" height="520"><figcaption><span>不赶时间的周末</span><span><i data-lucide="sun" aria-hidden="true"></i> NOV 2026</span></figcaption></figure>
+            <div class="section-heading"><div><p class="section-kicker">01 / 选择活动</p><h2 id="step-one-title" tabindex="-1">这周末，想做什么？</h2></div><span class="soft-label">零基础友好</span></div>
+            <fieldset class="workshop-options"><legend class="sr-only">选择工作坊</legend>
+              <label class="workshop-option"><input type="radio" name="workshop" value="notebook" checked><span class="option-icon"><i data-lucide="notebook-pen" aria-hidden="true"></i></span><span class="option-content"><strong>装订一本自己的手账</strong><span>纸张、针线，与一段慢下来的时间</span></span><span class="option-price">¥168<span> / 人</span></span><span class="radio-mark" aria-hidden="true"></span></label>
+              <label class="workshop-option"><input type="radio" name="workshop" value="clay"><span class="option-icon"><i data-lucide="coffee" aria-hidden="true"></i></span><span class="option-content"><strong>捏一只不一样的杯子</strong><span>让陶土留下属于你的形状</span></span><span class="option-price">¥228<span> / 人</span></span><span class="radio-mark" aria-hidden="true"></span></label>
+              <label class="workshop-option"><input type="radio" name="workshop" value="print"><span class="option-icon"><i data-lucide="stamp" aria-hidden="true"></i></span><span class="option-content"><strong>把灵感印在帆布袋上</strong><span>选一块颜色，印一个小小的念头</span></span><span class="option-price">¥188<span> / 人</span></span><span class="radio-mark" aria-hidden="true"></span></label>
+            </fieldset>
+            <div class="field-grid">
+              <div class="field"><label for="session">选择时段 <span class="required">*</span></label><div class="select-wrap"><select id="session" name="session" required aria-describedby="session-error"></select><i data-lucide="chevron-down" aria-hidden="true"></i></div><p class="field-error" id="session-error" hidden></p></div>
+              <div class="field"><label for="attendees">参加人数 <span class="required">*</span></label><div class="select-wrap"><select id="attendees" name="attendees" required aria-describedby="attendees-hint attendees-error"><option value="1">1 人，一个人的小约会</option><option value="2">2 人，和朋友一起</option><option value="3">3 人，一起找点灵感</option><option value="4">4 人，周末小分队</option></select><i data-lucide="chevron-down" aria-hidden="true"></i></div><p class="field-hint" id="attendees-hint">每份报名最多 4 人</p><p class="field-error" id="attendees-error" hidden></p></div>
+            </div>
+          </section>
+
+          <section class="step-panel" data-step="2" aria-labelledby="step-two-title" hidden>
+            <div class="section-heading"><div><p class="section-kicker">02 / 个人信息</p><h2 id="step-two-title" tabindex="-1">该怎么称呼你？</h2></div><span class="soft-label">很高兴认识你</span></div>
+            <div class="field"><label for="full-name">称呼 <span class="required">*</span></label><input id="full-name" name="fullName" autocomplete="name" maxlength="40" placeholder="例如：小林" required aria-describedby="full-name-error"><p class="field-error" id="full-name-error" hidden></p></div>
+            <div class="field"><label for="email">邮箱 <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" required aria-describedby="email-hint email-error"><p class="field-hint" id="email-hint">仅保存在本次页面中，不会发送邮件</p><p class="field-error" id="email-error" hidden></p></div>
+            <div class="field"><label for="phone">手机号 <span class="optional">选填</span></label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="11 位手机号" aria-describedby="phone-error"><p class="field-error" id="phone-error" hidden></p></div>
+            <div class="field"><label for="notes">有什么想提前告诉我们的？ <span class="optional">选填</span></label><textarea id="notes" name="notes" maxlength="300" rows="3" placeholder="例如：想和朋友坐在一起" aria-describedby="notes-count"></textarea><p class="field-hint character-count" id="notes-count">0 / 300</p></div>
+          </section>
+
+          <section class="step-panel" data-step="3" aria-labelledby="step-three-title" hidden>
+            <div class="section-heading"><div><p class="section-kicker">03 / 确认报名</p><h2 id="step-three-title" tabindex="-1">看一眼，就准备好啦。</h2></div><span class="soft-label">最后一步</span></div>
+            <div class="confirmation-block"><div class="block-label"><i data-lucide="ticket" aria-hidden="true"></i><h3>这次的工作坊</h3><button class="inline-button" type="button" data-edit-step="1">修改<i data-lucide="arrow-up-right" aria-hidden="true"></i></button></div><dl class="review-list"><div><dt>活动</dt><dd id="review-workshop"></dd></div><div><dt>时间</dt><dd id="review-session"></dd></div><div><dt>人数</dt><dd id="review-attendees"></dd></div><div><dt>地点</dt><dd>上海 · 静安手作空间<span class="small-note">演示场地</span></dd></div></dl></div>
+            <div class="confirmation-block"><div class="block-label"><i data-lucide="user-round" aria-hidden="true"></i><h3>你的信息</h3><button class="inline-button" type="button" data-edit-step="2">修改<i data-lucide="arrow-up-right" aria-hidden="true"></i></button></div><dl class="review-list"><div><dt>称呼</dt><dd id="review-name"></dd></div><div><dt>邮箱</dt><dd id="review-email"></dd></div><div id="review-phone-row" hidden><dt>手机</dt><dd id="review-phone"></dd></div><div id="review-notes-row" hidden><dt>备注</dt><dd id="review-notes"></dd></div></dl></div>
+            <label class="checkbox-label"><input type="checkbox" id="confirmation" name="confirmation" aria-describedby="confirmation-error"><span>我已确认活动、人数和联系方式</span></label><p class="field-error" id="confirmation-error" hidden></p>
+            <p class="local-note"><i data-lucide="shield-check" aria-hidden="true"></i>这是本地演示，不会发送报名或收取费用。</p>
+          </section>
+
+          <div class="form-actions"><button class="button button-back" type="button" id="back-button" hidden><i data-lucide="arrow-left" aria-hidden="true"></i>上一步</button><span class="step-fraction" id="step-fraction">1 / 3</span><button class="button button-primary" type="submit" id="next-button"><span id="next-label">下一步</span><i data-lucide="arrow-right" id="next-icon" aria-hidden="true"></i><span class="spinner" id="submit-spinner" aria-hidden="true" hidden></span></button></div>
+          <p class="submit-status" id="submit-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <section id="success-panel" class="success-panel" aria-labelledby="success-title" hidden><span class="success-icon"><i data-lucide="check" aria-hidden="true"></i></span><p class="section-kicker">周末的小计划，记下了</p><h2 id="success-title" tabindex="-1">演示报名已生成，未发送</h2><p id="success-copy"></p><div class="receipt"><span>本地记录编号</span><strong id="receipt-number"></strong></div><p class="local-note">记录仅存在当前页面。下载的文件含你填写的个人信息，请妥善保管。</p><div class="success-actions"><button type="button" id="download-button" class="button button-primary"><i data-lucide="download" aria-hidden="true"></i>下载报名记录</button><button type="button" id="restart-button" class="button button-secondary"><i data-lucide="rotate-ccw" aria-hidden="true"></i>重新报名</button></div><p id="download-status" class="submit-status" role="status"></p></section>
+      </section>
+
+      <aside class="summary" aria-labelledby="summary-title"><div class="summary-heading"><span class="summary-mark"><i data-lucide="sparkles" aria-hidden="true"></i></span><h2 id="summary-title">这次的小计划</h2></div><h3 id="summary-workshop">装订一本自己的手账</h3><ul class="summary-details"><li><i data-lucide="calendar-days" aria-hidden="true"></i><span id="summary-date"></span></li><li><i data-lucide="clock-3" aria-hidden="true"></i><span id="summary-time"></span></li><li><i data-lucide="map-pin" aria-hidden="true"></i><span>上海 · 静安手作空间</span></li><li><i data-lucide="users-round" aria-hidden="true"></i><span id="summary-people">1 位参加者</span></li></ul><div class="fee-lines"><div><span>工作坊费用</span><span id="summary-unit">¥168 × 1</span></div><div><span>材料与工具</span><span class="included">已包含</span></div></div><div class="total-line"><span>预计合计</span><strong id="summary-total">¥168</strong></div><p class="summary-note">无需在线付款</p><div class="included-note"><i data-lucide="package-check" aria-hidden="true"></i><span>材料、工具和你带走的作品<br>都包含在这个小计划里</span></div><p class="demo-disclaimer">活动、场地与价格均为演示内容</p></aside>
+    </div>
+    <details class="demo-settings"><summary><i data-lucide="settings-2" aria-hidden="true"></i>演示设置</summary><label class="checkbox-label"><input id="simulate-failure" type="checkbox"><span>测试提交失败</span></label><p>仅影响本地演示结果，不会发起网络请求。</p></details>
+  </main>
+  <footer class="site-footer"><span>KindForm<span class="brand-dot">.</span></span><span>把周末，留给一点小小的喜欢。</span><span>本地演示 · 2026</span></footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "kind-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KindForm: 友好极简的任务流程",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
